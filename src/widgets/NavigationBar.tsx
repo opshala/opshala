@@ -1,8 +1,16 @@
-import { Component } from "solid-js";
+import { Component, createSignal } from "solid-js";
+
 import NavigationButtom from "./NavigationButton";
 import DropdownItem from "./DropdownItem";
 
 const NavigationBar: Component = () => {
+  const [isUserDropdownOpen, setIsUserDropdownOpen] =
+    createSignal<boolean>(false);
+
+  const handleUserDropdownClick = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen());
+  };
+
   return (
     <nav class="bg-gray-800">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -18,10 +26,12 @@ const NavigationBar: Component = () => {
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                <NavigationButtom label="Dashboard" />
-                <NavigationButtom label="Projects" />
-                <NavigationButtom label="Resources" />
-                <NavigationButtom label="Team" />
+                <NavigationButtom label="Projects" path="projects" />
+                <NavigationButtom label="Explore" path="explore" />
+                <NavigationButtom
+                  label="Infrastructure"
+                  path="infrastructure"
+                />
               </div>
             </div>
           </div>
@@ -57,6 +67,7 @@ const NavigationBar: Component = () => {
                   id="user-menu-button"
                   aria-expanded="false"
                   aria-haspopup="true"
+                  onClick={handleUserDropdownClick}
                 >
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
@@ -68,27 +79,20 @@ const NavigationBar: Component = () => {
                 </button>
               </div>
 
-              {/* <!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          --> */}
-              <div
-                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu-button"
-                tabindex="-1"
-              >
-                {/* <!-- Active: "bg-gray-100", Not Active: "" --> */}
-                <DropdownItem label="Your Profile" />
-                <DropdownItem label="Settings" />
-              </div>
+              {!!isUserDropdownOpen() && (
+                <div
+                  class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu-button"
+                  tabindex="-1"
+                >
+                  {/* <!-- Active: "bg-gray-100", Not Active: "" --> */}
+                  <DropdownItem label="Your Profile" />
+                  <DropdownItem label="Team" />
+                  <DropdownItem label="Settings" />
+                </div>
+              )}
             </div>
           </div>
         </div>

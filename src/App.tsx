@@ -1,6 +1,7 @@
 import { Component } from "solid-js";
 import { UserProvider } from "./stores/user";
 import NavigationBar from "./widgets/NavigationBar";
+import Screens from "./components/Screens";
 
 const App: Component = () => {
   return (
@@ -8,6 +9,8 @@ const App: Component = () => {
       <UserProvider>
         <>
           <NavigationBar />
+
+          <Screens />
         </>
       </UserProvider>
     </div>

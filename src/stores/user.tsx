@@ -1,4 +1,4 @@
-import { Component, JSXElement, createContext, useContext } from "solid-js";
+import { Component, JSX, createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
 
 interface IStore {
@@ -20,7 +20,7 @@ const userStore = makeStore();
 const UserContext = createContext<TStoreAndFunctions>(userStore);
 
 interface IUserProviderPropTypes {
-  children: JSXElement;
+  children: JSX.Element;
 }
 
 export const UserProvider: Component<IUserProviderPropTypes> = (props) => {
