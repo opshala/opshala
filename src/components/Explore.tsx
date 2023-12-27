@@ -1,7 +1,9 @@
-import { Component } from "solid-js";
+import { Component, For } from "solid-js";
 
 import Heading from "../widgets/typography/Heading";
 import Paragraph from "../widgets/typography/Paragraph";
+import softwareItems from "../temp/softwareItems";
+import SoftwareItem from "../widgets/explore/Item";
 
 const Explore: Component = () => {
   return (
@@ -9,9 +11,10 @@ const Explore: Component = () => {
       <Heading size="4xl">Explore</Heading>
 
       <Paragraph size="lg">
-        Explore existing software that can be automatically deployed and managed
-        using OpShala
+        Software that can be automatically deployed and managed using OpShala
       </Paragraph>
+
+      <For each={softwareItems}>{(item) => <SoftwareItem {...item} />}</For>
     </div>
   );
 };
