@@ -10,7 +10,9 @@ const App: Component = () => {
         <>
           <NavigationBar />
 
-          <Screens />
+          <div class="pt-16">
+            <Screens />
+          </div>
         </>
       </UserProvider>
     </div>

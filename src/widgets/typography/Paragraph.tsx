@@ -1,11 +1,11 @@
 import { Component } from "solid-js";
 
-type TParagraphProps = {
+interface IPropTypes {
   size?: "sm" | "base" | "lg";
   children: string;
-};
+}
 
-const Paragraph: Component<TParagraphProps> = (props) => {
+const Paragraph: Component<IPropTypes> = (props) => {
   const getSizeClass = (size?: string) => {
     switch (size) {
       case "sm":
@@ -18,7 +18,9 @@ const Paragraph: Component<TParagraphProps> = (props) => {
         return "text-base";
     }
   };
-  const paragraphClasses = `${getSizeClass(props.size)} text-gray-300`;
+  const paragraphClasses = `${getSizeClass(
+    props.size
+  )} text-gray-300 select-none cursor-default`;
 
   return <p class={paragraphClasses}>{props.children}</p>;
 };

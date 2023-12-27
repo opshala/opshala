@@ -12,7 +12,7 @@ const NavigationBar: Component = () => {
   };
 
   return (
-    <nav class="bg-gray-800">
+    <nav class="bg-gray-800 fixed w-full">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">

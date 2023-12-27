@@ -1,11 +1,11 @@
 import { Component, JSX } from "solid-js";
 
-type THeadingProps = {
+interface IPropTypes {
   size: "sm" | "base" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
   children: JSX.Element | string;
-};
+}
 
-const Heading: Component<THeadingProps> = (props): JSX.Element => {
+const Heading: Component<IPropTypes> = (props): JSX.Element => {
   // We need this function in order to tell Tailwind CSS exact and full size classes, so it will include all of these.
   // Otherwise, Tailwind will not include them in the final CSS file.
   const getSizeClass = (size: string) => {
@@ -32,7 +32,9 @@ const Heading: Component<THeadingProps> = (props): JSX.Element => {
         return "text-base";
     }
   };
-  const headingClasses = `${getSizeClass(props.size)} font-bold text-white`;
+  const headingClasses = `${getSizeClass(
+    props.size
+  )} font-bold text-white select-none cursor-default`;
 
   return <span class={headingClasses}>{props.children}</span>;
 };
