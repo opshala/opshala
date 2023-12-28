@@ -21,7 +21,6 @@ const NavigationButtom: Component<INavigationButtonProps> = (props) => {
   );
 
   const handleClick = () => {
-    console.log(props.path);
     setCurrentScreen(props.path as TScreens);
   };
 

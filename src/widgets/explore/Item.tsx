@@ -5,10 +5,12 @@ import Paragraph from "../typography/Paragraph";
 import Heading from "../typography/Heading";
 import ExternalAnchor from "../interactable/ExternalAnchor";
 import Button from "../interactable/Button";
+import { useGlobal } from "../../stores/global";
 
 interface IPropTypes extends ISoftwareItem {}
 
 const SoftwareItem: Component<IPropTypes> = ({
+  id,
   name,
   description,
   logo,
@@ -18,6 +20,13 @@ const SoftwareItem: Component<IPropTypes> = ({
   githubStars,
   tags,
 }) => {
+  const [_, { setCurrentScreen, setSelectedSoftwareId }] = useGlobal();
+
+  const handleDeploy = () => {
+    setSelectedSoftwareId(id);
+    setCurrentScreen("manage-project");
+  };
+
   return (
     <div class="bg-gray-800 rounded-lg shadow-md p-4 my-4">
       {/* {banner && <img class="w-full mb-4" src={banner} alt={name} />} */}
@@ -32,7 +41,7 @@ const SoftwareItem: Component<IPropTypes> = ({
             }
             alt={name}
           />
-          <Button label="Deploy" size="sm" />
+          <Button label="Deploy" size="sm" onClick={handleDeploy} />
         </div>
         <div class="flex-grow">
           <Heading size="xl">{name}</Heading>
