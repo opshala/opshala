@@ -4,6 +4,9 @@ import { useGlobal } from "../../stores/global";
 import Heading from "../../widgets/typography/Heading";
 import Paragraph from "../../widgets/typography/Paragraph";
 import softwareItems from "../../temp/softwareItems";
+import TextInput from "../../widgets/interactable/TextInput";
+import FolderInput from "../../widgets/interactable/FolderInput";
+import YouTube from "../../widgets/YouTube";
 
 const ManageProject: Component = () => {
   const [store] = useGlobal();
@@ -36,6 +39,12 @@ const ManageProject: Component = () => {
         <Paragraph size="base">
           {`You are creating a new project with ${selectedSoftware.name}`}
         </Paragraph>
+
+        <TextInput label="Project Name" placeholder="My Business Site" />
+
+        <FolderInput label="Save in" />
+
+        <YouTube videoId="URmeTqglS58" />
       </div>
     </div>
   );
