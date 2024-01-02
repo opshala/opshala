@@ -7,6 +7,7 @@ import softwareItems from "../../temp/softwareItems";
 import TextInput from "../../widgets/interactable/TextInput";
 import FolderInput from "../../widgets/interactable/FolderInput";
 import YouTube from "../../widgets/YouTube";
+import ExternalAnchor from "../../widgets/interactable/ExternalAnchor";
 
 const ManageProject: Component = () => {
   const [store] = useGlobal();
@@ -36,11 +37,39 @@ const ManageProject: Component = () => {
           {!!store.currentProjectId ? "Manage " : "Create a"} Project
         </Heading>
 
-        <Paragraph size="base">
+        <Paragraph size="lg">
           {`You are creating a new project with ${selectedSoftware.name}`}
         </Paragraph>
 
-        <TextInput label="Project Name" placeholder="My Business Site" />
+        <div class="mt-8">
+          <Heading size="2xl">Step 1</Heading>
+          <Heading size="lg">Project repository on GitHub</Heading>
+          <Paragraph size="sm">
+            OpShala uses GitHub to store your project and run all the automation
+            needed to deploy your project to your cloud provider.
+          </Paragraph>
+          <ExternalAnchor href="https://github.com/new">
+            Create a repo for this project
+          </ExternalAnchor>
+          <TextInput label="URL to your GitHub repository" />
+
+          <div class="mt-4" />
+
+          <Heading size="lg">Connect OpShala with GitHub</Heading>
+          <Paragraph size="sm">
+            OpShala needs access to the repository you just created on GitHub to
+            deploy your project. In the link below, select the new repository
+            and the following scopes, under Repository permissions:
+          </Paragraph>
+          <ul>
+            <li>Administration: Read and write</li>
+            <li>Secrets: Read and write</li>
+          </ul>
+          <ExternalAnchor href="https://github.com/settings/personal-access-tokens/new">
+            Create a new Personal Access Token
+          </ExternalAnchor>
+          <TextInput label="Paste your Personal Access Token" />
+        </div>
 
         <FolderInput label="Save in" />
 
