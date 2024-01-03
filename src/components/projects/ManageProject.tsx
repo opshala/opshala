@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import { Component, createSignal } from "solid-js";
 
 import { useGlobal } from "../../stores/global";
 import Heading from "../../widgets/typography/Heading";
@@ -8,9 +8,32 @@ import TextInput from "../../widgets/interactable/TextInput";
 import FolderInput from "../../widgets/interactable/FolderInput";
 import YouTube from "../../widgets/YouTube";
 import ExternalAnchor from "../../widgets/interactable/ExternalAnchor";
+import Button from "../../widgets/interactable/Button";
+
+interface IFormData {
+  githubRepoUrl: string;
+  githubToken: string;
+  folderPath: string;
+}
 
 const ManageProject: Component = () => {
   const [store] = useGlobal();
+  const [formData, setFormData] = createSignal<IFormData>({
+    githubRepoUrl: "",
+    githubToken: "",
+    folderPath: "",
+  });
+
+  const handleFieldChange = (fieldName: string) => {
+    const inner = (newValue: string | number) => {
+      setFormData({
+        ...formData(),
+        [fieldName]: newValue,
+      });
+    };
+
+    return inner;
+  };
 
   const selectedSoftware = softwareItems.find(
     (x) => x.id === store.selectedSoftwareId
@@ -51,7 +74,11 @@ const ManageProject: Component = () => {
           <ExternalAnchor href="https://github.com/new">
             Create a repo for this project
           </ExternalAnchor>
-          <TextInput label="URL to your GitHub repository" />
+          <TextInput
+            label="URL to your GitHub repository"
+            value={formData().githubRepoUrl}
+            onChange={handleFieldChange("githubRepoUrl")}
+          />
 
           <div class="mt-4" />
 
@@ -74,6 +101,8 @@ const ManageProject: Component = () => {
         <FolderInput label="Save in" />
 
         <YouTube videoId="URmeTqglS58" />
+
+        <Button label="Lets go!" />
       </div>
     </div>
   );
