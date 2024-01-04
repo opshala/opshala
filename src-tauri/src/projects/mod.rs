@@ -1,11 +1,7 @@
-use std::{collections::HashMap, path::Path};
-
-use crate::github::save_deploy_key_to_repository;
+use ssh_key::{rand_core::OsRng, Algorithm, LineEnding, PrivateKey};
 
 use super::github::clone_github_repository;
-use git2::{build::RepoBuilder, Cred, RemoteCallbacks};
-use reqwest::{header, StatusCode};
-use ssh_key::{rand_core::OsRng, Algorithm, LineEnding, PrivateKey};
+use crate::github::save_deploy_key_to_repository;
 
 #[cfg(windows)]
 const LINE_ENDING: LineEnding = LineEnding::CRLF;

@@ -1,10 +1,9 @@
-use std::sync::Mutex;
-
 use include_dir::{include_dir, Dir};
 use lazy_static::lazy_static;
 use rusqlite::Connection;
 use rusqlite_migration::Migrations;
-use tauri::{api::path::app_data_dir, Config, Manager};
+use std::sync::Mutex;
+use tauri::{api::path::app_data_dir, Config};
 
 use super::DbConnection;
 

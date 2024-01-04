@@ -1,12 +1,10 @@
+use git2::{build::RepoBuilder, Cred, RemoteCallbacks};
+use reqwest::{header, StatusCode};
+use ssh_key::PublicKey;
 use std::{
     collections::HashMap,
     path::{Path, PathBuf},
 };
-
-use git2::{build::RepoBuilder, Cred, RemoteCallbacks};
-use reqwest::{header, StatusCode};
-use serde::{Deserialize, Serialize};
-use ssh_key::PublicKey;
 
 fn get_repository_ssh_url(owner: &str, name: &str) -> String {
     format!("git@github.com:{}/{}.git", owner, name)
