@@ -19,7 +19,7 @@ fn main() {
             app.manage(get_database(app));
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![greet, projects::create_project,])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
