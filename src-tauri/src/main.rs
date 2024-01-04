@@ -5,6 +5,7 @@ use database::setup::get_database;
 use tauri::Manager;
 
 mod database;
+mod github;
 mod projects;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
