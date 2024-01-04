@@ -8,9 +8,15 @@ interface IPropTypes {
   placeholder?: string;
   value?: string | number;
   isRequired?: boolean;
+  onChange?: (newValue: string) => void;
 }
 
-const FolderInput: Component<IPropTypes> = ({ label, value, isRequired }) => {
+const FolderInput: Component<IPropTypes> = ({
+  label,
+  value,
+  isRequired,
+  onChange,
+}) => {
   const handleOpenRequest = async () => {
     let selectedPath = await open({
       title: "Please select a folder",
@@ -18,10 +24,11 @@ const FolderInput: Component<IPropTypes> = ({ label, value, isRequired }) => {
       directory: true,
     });
 
-    if (selectedPath) {
+    if (!!selectedPath) {
       if (typeof selectedPath === "object") {
         selectedPath = selectedPath[0] as string;
       }
+      onChange?.(selectedPath);
     }
   };
 

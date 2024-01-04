@@ -1,4 +1,5 @@
 import { Component, createSignal } from "solid-js";
+import { invoke } from "@tauri-apps/api";
 
 import { useGlobal } from "../../stores/global";
 import Heading from "../../widgets/typography/Heading";
@@ -13,7 +14,7 @@ import Button from "../../widgets/interactable/Button";
 interface IFormData {
   githubRepoUrl: string;
   githubToken: string;
-  folderPath: string;
+  parentFolderPath: string;
 }
 
 const ManageProject: Component = () => {
@@ -21,7 +22,7 @@ const ManageProject: Component = () => {
   const [formData, setFormData] = createSignal<IFormData>({
     githubRepoUrl: "",
     githubToken: "",
-    folderPath: "",
+    parentFolderPath: "",
   });
 
   const handleFieldChange = (fieldName: string) => {
@@ -33,6 +34,16 @@ const ManageProject: Component = () => {
     };
 
     return inner;
+  };
+
+  const handleSubmit = () => {
+    // Invoke the Tauri API to create a new project
+    console.log("Creating a new project...");
+    invoke("create_project", {
+      ...formData(),
+    }).then((response) => {
+      console.log(response);
+    });
   };
 
   const selectedSoftware = softwareItems.find(
@@ -95,14 +106,20 @@ const ManageProject: Component = () => {
           <ExternalAnchor href="https://github.com/settings/personal-access-tokens/new">
             Create a new Personal Access Token
           </ExternalAnchor>
-          <TextInput label="Paste your Personal Access Token" />
+          <TextInput
+            label="Paste your Personal Access Token"
+            onChange={handleFieldChange("githubToken")}
+          />
         </div>
 
-        <FolderInput label="Save in" />
+        <FolderInput
+          label="Save in"
+          onChange={handleFieldChange("parentFolderPath")}
+        />
 
         <YouTube videoId="URmeTqglS58" />
 
-        <Button label="Lets go!" />
+        <Button label="Lets go!" onClick={handleSubmit} />
       </div>
     </div>
   );
