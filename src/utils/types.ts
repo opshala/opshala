@@ -1,5 +1,6 @@
 export type TScreens =
   | "projects"
+  | "manage-project"
   | "explore"
   | "infrastructure"
   | "team"
@@ -7,7 +8,7 @@ export type TScreens =
   | "settings";
 
 export interface ISoftwareItem {
-  id: string;
+  id: number;
   name: string;
   description: string;
   logo: string;

@@ -34,7 +34,7 @@ const Heading: Component<IPropTypes> = (props): JSX.Element => {
   };
   const headingClasses = `${getSizeClass(
     props.size
-  )} font-bold text-white select-none cursor-default`;
+  )} block font-bold text-white select-none cursor-default`;
 
   return <span class={headingClasses}>{props.children}</span>;
 };

@@ -5,6 +5,10 @@ import { TScreens } from "../utils/types";
 
 interface IStore {
   currentScreen: TScreens;
+
+  // Manage project related
+  currentProjectId?: number;
+  selectedSoftwareId?: number;
 }
 
 const makeStore = () => {
@@ -17,6 +21,10 @@ const makeStore = () => {
     {
       setCurrentScreen: (screen: TScreens) => {
         setStore("currentScreen", screen);
+      },
+
+      setSelectedSoftwareId: (id: number) => {
+        setStore("selectedSoftwareId", id);
       },
     },
   ] as const; // `as const` forces tuple type inference
