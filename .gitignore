@@ -1,4 +1,3 @@
 node_modules
 dist
 opshala.sqlite3
-src-tauri/migrations
