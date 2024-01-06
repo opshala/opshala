@@ -4,7 +4,7 @@ Deploy and manage off-the-shelf or custom software on cloud providers without co
 
 ## What is OpShala?
 
-OpShala is a desktop application that helps you with all the steps needed to automatically deploy and manage off-the-shelf software on cloud infrastructure. Off-the-shelf software like WordPress (blogging, content management), Magento (e-commerce), Saleor (e-commerce), Discourse (forums/community), NocoDB (Airtable alternative), Appsmith (internal tool builder) and many more.
+OpShala is a desktop application that helps you with all the steps needed to automatically deploy and manage off-the-shelf software on cloud infrastructure. Off-the-shelf software like WordPress (blogging, content management), Magento (e-commerce), Saleor (e-commerce), Discourse (forums/community), NocoDB (Airtable alternative), Appsmith (internal tool builder), Supabase (Firebase alternative) and many more.
 
 ## How does it work?
 
