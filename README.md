@@ -1,6 +1,6 @@
 # OpShala Desktop App
 
-Deploy and manage off-the-shelf or custom software on cloud providers without code
+Deploy and manage off-the-shelf or custom software on cloud providers without code.
 
 ## What is OpShala?
 
@@ -10,7 +10,7 @@ OpShala is a desktop application that helps you with all the steps needed to aut
 
 OpShala uses a Git repository (where your software project resides) and adds all the necessary IT configuration for automatic deployment using GitHub or GitLab or any other CI/CD system. CI/CD stands for Continuous Integration, Continuous Delivery and is a set of IT practices allowing software compaines to constantly test and manage the development of their own software, and may include deployment of software to cloud or customers.
 
-These are standard industry practices. What OpShala does is manage the configurations directly on your desktop as you specify your needs through an easy to use GUI. Then the automations run on GitHub or GitLab. You will be guided to setup accounts with GitHub or GitLab as well as cloud infrustructure providers like DigitalOcean, Linode, Cloudflare, etc.
+These are standard industry practices. What OpShala does is manage the configurations directly on your desktop as you specify your needs through an easy to use guided non-technical GUI. Then the automations run on GitHub or GitLab. You will be guided to setup accounts with GitHub or GitLab as well as cloud infrustructure providers like DigitalOcean, Linode, Cloudflare, etc.
 
 ## Does OpShala support deploying custom software?
 
@@ -18,9 +18,9 @@ At the moment we are focused on deploying off-the-shelf software like WordPress,
 
 ## What about database, caching, domain name config, etc.?
 
-OpShala takes cares of every aspect of the infrastructure needed to get your software online. OpShala app allows you to select your preferred database, depending on what is supported by the software you want to run on the cloud. It can add caching, search, error tracking, backups and many more systems. OpShala uses Cloudflare or similar cloud infrastructure providers to manage domain name configuration. You will be guided to register with them.
+OpShala takes cares of every aspect of the infrastructure needed to get your software online. OpShala app allows you to select your preferred database, depending on what is supported by the software you want to run on the cloud. It can add caching, search, error tracking, backups and many more systems. OpShala uses Cloudflare or similar cloud infrastructure providers to manage domain name configuration. You will be guided to register with all the necessary providers.
 
-## Can I run multiple software on the same server?
+## Can I run multiple softwares on the same server?
 
 Yes! This is a very crucial point for OpShala since we are focused on empowering a larger number of business to go online. OpShala generates configuration that tries to utilise your cloud server as optimally as possible. Depending on the number of users or vistors your website gets, you should be able to run a combination of e-Commerce, accounting, CRM or even ERP software on the minimum supported cloud server.
 
