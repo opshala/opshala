@@ -38,7 +38,6 @@ const CreateProject: Component = () => {
 
   const handleSubmit = () => {
     // Invoke the Tauri API to create a new project
-    console.log("Creating a new project...");
     invoke("create_project", {
       ...formData(),
     }).then((response) => {

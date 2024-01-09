@@ -1,6 +1,6 @@
-import { ISoftwareItem } from "../utils/types";
+import { ISoftware } from "../utils/types";
 
-const softwareItems: ISoftwareItem[] = [
+const softwareItems: ISoftware[] = [
   {
     id: 1,
     name: "WordPress",

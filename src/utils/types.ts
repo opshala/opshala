@@ -8,7 +8,7 @@ export type TScreens =
   | "profile"
   | "settings";
 
-export interface ISoftwareItem {
+export interface ISoftware {
   id: number;
   name: string;
   description: string;
@@ -18,4 +18,13 @@ export interface ISoftwareItem {
   repositoryURL?: string;
   githubStars?: number;
   tags: string[];
+}
+
+export interface IProject {
+  id: number;
+  name: string;
+  label?: string;
+  repositoryURL: string;
+  localPath: string;
+  homepageURL?: string;
 }
