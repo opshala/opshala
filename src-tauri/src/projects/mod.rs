@@ -1,34 +1,28 @@
 use ssh_key::{rand_core::OsRng, Algorithm, LineEnding, PrivateKey};
 
-use super::github::clone_github_repository;
-use crate::github::save_deploy_key_to_repository;
+use crate::github::{clone_github_repository, save_deploy_key_to_repository};
+
+pub mod crud;
+pub mod helpers;
 
 #[cfg(windows)]
 const LINE_ENDING: LineEnding = LineEnding::CRLF;
 #[cfg(not(windows))]
 const LINE_ENDING: LineEnding = LineEnding::LF;
 
-fn get_repository_owner_and_name(github_repo_url: &str) -> Result<(&str, &str), String> {
-    // We extract the repository owner and name from the github URL
-    // URLs can be either https://github.com/{owner}/{name} or https://github.com/{owner}/{name}.git or git@github.com:{owner}/{name}.git
-    let github_repo_url = github_repo_url.trim();
-    let github_repo_url = github_repo_url.trim_end_matches(".git");
-    let github_repo_url = github_repo_url.trim_end_matches('/');
-    let mut split = github_repo_url.split('/').rev();
-
-    let name = split.next().unwrap();
-    let owner = split.next().unwrap();
-    Ok((owner, name))
-}
-
 #[tauri::command]
 pub async fn create_project(
     app_handle: tauri::AppHandle,
+    db_conn: tauri::State<'_, crate::database::DbConnection>,
     github_repo_url: &str,
     github_token: &str,
     parent_folder_path: &str,
 ) -> Result<(), String> {
-    let (owner, name) = get_repository_owner_and_name(github_repo_url).unwrap();
+    let (owner, name) = helpers::get_repository_owner_and_name(github_repo_url).unwrap();
+    // We create a Product struct and then save it to database
+    let project = crud::Project::new(github_repo_url, parent_folder_path).unwrap();
+    project.save_to_database(&db_conn).unwrap();
+
     // We create a new SSH key pair for the project and add it to GitHub as a deploy key, with write access
     let ssh_private_key = PrivateKey::random(&mut OsRng, Algorithm::Ed25519).unwrap();
     ssh_private_key
@@ -60,22 +54,10 @@ pub async fn create_project(
     Ok(())
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn test_get_repository_owner_and_name() {
-        assert_eq!(
-            super::get_repository_owner_and_name("https://github.com/brainless/opshala").unwrap(),
-            ("brainless", "opshala")
-        );
-        assert_eq!(
-            super::get_repository_owner_and_name("https://github.com/brainless/opshala.git")
-                .unwrap(),
-            ("brainless", "opshala")
-        );
-        assert_eq!(
-            super::get_repository_owner_and_name("git@github.com/brainless/opshala.git").unwrap(),
-            ("brainless", "opshala")
-        );
-    }
+#[tauri::command]
+pub async fn read_project_list(
+    db_conn: tauri::State<'_, crate::database::DbConnection>,
+) -> Result<Vec<crud::Project>, String> {
+    let project_list = crud::read_project_list(&db_conn).unwrap();
+    Ok(project_list)
 }

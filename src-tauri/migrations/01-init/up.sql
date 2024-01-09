@@ -2,7 +2,7 @@ CREATE TABLE "projects" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"name"	TEXT NOT NULL,
 	"label"	TEXT,
-	"url"	TEXT NOT NULL,
+	"repository_url"	TEXT NOT NULL,
 	"local_path"	TEXT NOT NULL,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
