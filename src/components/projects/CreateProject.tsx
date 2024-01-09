@@ -17,7 +17,7 @@ interface IFormData {
   parentFolderPath: string;
 }
 
-const ManageProject: Component = () => {
+const CreateProject: Component = () => {
   const [store] = useGlobal();
   const [formData, setFormData] = createSignal<IFormData>({
     githubRepoUrl: "",
@@ -75,54 +75,62 @@ const ManageProject: Component = () => {
           {`You are creating a new project with ${selectedSoftware.name}`}
         </Paragraph>
 
-        <div class="mt-8">
-          <Heading size="2xl">Step 1</Heading>
-          <Heading size="lg">Project repository on GitHub</Heading>
-          <Paragraph size="sm">
-            OpShala uses GitHub to store your project and run all the automation
-            needed to deploy your project to your cloud provider.
-          </Paragraph>
-          <ExternalAnchor href="https://github.com/new">
-            Create a repo for this project
-          </ExternalAnchor>
-          <TextInput
-            label="URL to your GitHub repository"
-            value={formData().githubRepoUrl}
-            onChange={handleFieldChange("githubRepoUrl")}
-          />
+        <div class="mt-6" />
+        <Heading size="lg">Project repository on GitHub</Heading>
+        <Paragraph size="sm">
+          OpShala uses GitHub to store your project and run all the automation
+          needed to deploy your project to your cloud provider.
+        </Paragraph>
+        <ExternalAnchor href="https://github.com/new">
+          Create a repo for this project
+        </ExternalAnchor>
+        <TextInput
+          label="URL to your GitHub repository"
+          value={formData().githubRepoUrl}
+          onChange={handleFieldChange("githubRepoUrl")}
+        />
 
-          <div class="mt-4" />
+        <div class="mt-12" />
 
-          <Heading size="lg">Connect OpShala with GitHub</Heading>
-          <Paragraph size="sm">
-            OpShala needs access to the repository you just created on GitHub to
-            deploy your project. In the link below, select the new repository
-            and the following scopes, under Repository permissions:
-          </Paragraph>
-          <ul>
-            <li>Administration: Read and write</li>
-            <li>Secrets: Read and write</li>
-          </ul>
-          <ExternalAnchor href="https://github.com/settings/personal-access-tokens/new">
-            Create a new Personal Access Token
-          </ExternalAnchor>
-          <TextInput
-            label="Paste your Personal Access Token"
-            onChange={handleFieldChange("githubToken")}
-          />
-        </div>
+        <Heading size="lg">Connect OpShala with GitHub</Heading>
+        <Paragraph size="sm">
+          OpShala needs access to the repository you just created on GitHub to
+          deploy your project. In the link below, select the new repository and
+          the following scopes, under Repository permissions:
+        </Paragraph>
+        <ol class="text-white ml-8 list-decimal text-sm">
+          <li>Actions: Read and write</li>
+          <li>Administration: Read and write</li>
+          <li>Environments: Read and write</li>
+          <li>Secrets: Read and write</li>
+        </ol>
+        <ExternalAnchor href="https://github.com/settings/personal-access-tokens/new">
+          Create a new Personal Access Token
+        </ExternalAnchor>
+        <TextInput
+          label="Paste your Personal Access Token"
+          onChange={handleFieldChange("githubToken")}
+        />
 
+        <div class="mt-12" />
+
+        <Heading size="lg">Project home folder</Heading>
+        <Paragraph size="sm">
+          Where would you like to save this project on your computer? This
+          project will be saved in a subfolder inside the folder you select.
+          Your user home folder is a good place if you are in doubt.
+        </Paragraph>
         <FolderInput
-          label="Save in"
           onChange={handleFieldChange("parentFolderPath")}
+          value={formData().parentFolderPath}
         />
 
         <YouTube videoId="URmeTqglS58" />
 
-        <Button label="Lets go!" onClick={handleSubmit} />
+        <Button size="lg" label="Lets go!" onClick={handleSubmit} isBlock />
       </div>
     </div>
   );
 };
 
-export default ManageProject;
+export default CreateProject;

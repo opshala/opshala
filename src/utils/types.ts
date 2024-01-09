@@ -1,5 +1,6 @@
 export type TScreens =
   | "projects"
+  | "create-project"
   | "manage-project"
   | "explore"
   | "infrastructure"
