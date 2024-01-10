@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "desktopApp",
+    "productName": "OpShala",
     "version": "0.0.0"
   },
   "tauri": {
@@ -40,9 +40,9 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "desktopapp",
-        "width": 800,
-        "height": 600
+        "title": "OpShala",
+        "width": 1280,
+        "height": 720
       }
     ]
   }
