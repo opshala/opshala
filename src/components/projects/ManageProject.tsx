@@ -53,7 +53,7 @@ const ManageProject: Component = () => {
   if (!store.currentProjectId && !selectedSoftware)
     return (
       <div class="h-full bg-gray-900">
-        <div class="h-full max-w-screen-sm mx-auto p-8 ">
+        <div class="mx-auto h-full max-w-screen-sm p-8 ">
           <Heading size="4xl">Create a Project</Heading>
 
           <Paragraph size="base">
@@ -66,7 +66,7 @@ const ManageProject: Component = () => {
 
   return (
     <div class="h-full bg-gray-900">
-      <div class="h-full max-w-screen-sm mx-auto p-8 ">
+      <div class="mx-auto h-full max-w-screen-sm p-8 ">
         <Heading size="4xl">
           {!!store.currentProjectId ? "Manage " : "Create a"} Project
         </Heading>

@@ -28,12 +28,12 @@ const SoftwareItem: Component<IPropTypes> = ({
   };
 
   return (
-    <div class="bg-gray-800 rounded-lg shadow-md p-4 my-4">
+    <div class="my-4 rounded-lg bg-gray-800 p-4 shadow-md">
       {/* {banner && <img class="w-full mb-4" src={banner} alt={name} />} */}
       <div class="flex">
         <div class="mr-4">
           <img
-            class="w-16 h-16 mb-4"
+            class="mb-4 h-16 w-16"
             src={
               !!logo
                 ? logo
@@ -53,13 +53,13 @@ const SoftwareItem: Component<IPropTypes> = ({
             <ExternalAnchor href={repositoryURL}>Repository</ExternalAnchor>
           )}
           {githubStars && (
-            <p class="text-gray-300 mb-2">GitHub Stars: {githubStars}</p>
+            <p class="mb-2 text-gray-300">GitHub Stars: {githubStars}</p>
           )}
 
           <div class="flex">
             <For each={tags}>
               {(tag) => (
-                <span class="text-gray-300 text-sm mr-2 bg-gray-900 px-2 rounded-md">
+                <span class="mr-2 rounded-md bg-gray-900 px-2 text-sm text-gray-300">
                   {tag}
                 </span>
               )}
