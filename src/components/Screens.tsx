@@ -1,10 +1,10 @@
 import { Component } from "solid-js";
 
 import { useGlobal } from "../stores/global";
+import { TScreens } from "../utils/types";
 import Explore from "./Explore";
 import CreateProject from "./projects/CreateProject";
 import ManageProject from "./projects/ManageProject";
-import { TScreens } from "../utils/types";
 import ListProjects from "./projects/List";
 
 const Screens: Component = () => {

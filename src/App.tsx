@@ -1,7 +1,7 @@
 import { Component } from "solid-js";
 
 import { UserProvider } from "./stores/user";
-import NavigationBar from "./widgets/NavigationBar";
+import NavigationBar from "./widgets/navigation/NavigationBar";
 import Screens from "./components/Screens";
 
 const App: Component = () => {

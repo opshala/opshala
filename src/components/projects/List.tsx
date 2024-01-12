@@ -21,7 +21,7 @@ const ListProjects: Component = () => {
       <Heading size="4xl">Projects</Heading>
 
       <Paragraph size="lg">
-        Software that you have deployed using OpShala
+        Software that you deploy and manage using OpShala
       </Paragraph>
 
       {!projects() && (

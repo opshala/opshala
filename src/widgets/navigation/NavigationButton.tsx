@@ -1,6 +1,7 @@
 import { Component, createMemo } from "solid-js";
-import { TScreens } from "../utils/types";
-import { useGlobal } from "../stores/global";
+
+import { TScreens } from "../../utils/types";
+import { useGlobal } from "../../stores/global";
 
 interface INavigationButtonProps {
   label: string;

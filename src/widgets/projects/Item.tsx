@@ -1,18 +1,18 @@
 import { Component } from "solid-js";
 
 import { IProject, TScreens } from "../../utils/types";
+import { useGlobal } from "../../stores/global";
 import Heading from "../typography/Heading";
 import ExternalAnchor from "../interactable/ExternalAnchor";
 import Button from "../interactable/Button";
-import { useGlobal } from "../../stores/global";
 
 interface IPropTypes extends IProject {}
 
 const ProjectItem: Component<IPropTypes> = (props) => {
-  const [_, { setCurrentScreen, setSelectedSoftwareId }] = useGlobal();
+  const [_, { setCurrentScreen, setCurrentProjectId }] = useGlobal();
 
   const handleManage = () => {
-    setSelectedSoftwareId(props.id);
+    setCurrentProjectId(props.id);
     setCurrentScreen("manage-project" as TScreens);
   };
 

@@ -26,6 +26,10 @@ const makeStore = () => {
       setSelectedSoftwareId: (id: number) => {
         setStore("selectedSoftwareId", id);
       },
+
+      setCurrentProjectId: (id: number) => {
+        setStore("currentProjectId", id);
+      },
     },
   ] as const; // `as const` forces tuple type inference
 };

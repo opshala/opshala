@@ -66,9 +66,7 @@ const CreateProject: Component = () => {
   return (
     <div class="h-full bg-gray-900">
       <div class="h-full max-w-screen-sm mx-auto p-8 ">
-        <Heading size="4xl">
-          {!!store.currentProjectId ? "Manage " : "Create a"} Project
-        </Heading>
+        <Heading size="4xl">Create a Project</Heading>
 
         <Paragraph size="lg">
           {`You are creating a new project with ${selectedSoftware.name}`}
