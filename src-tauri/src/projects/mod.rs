@@ -61,3 +61,12 @@ pub async fn read_project_list(
     let project_list = crud::read_project_list(&db_conn).unwrap();
     Ok(project_list)
 }
+
+#[tauri::command]
+pub async fn read_project(
+    db_conn: tauri::State<'_, crate::database::DbConnection>,
+    id: i64,
+) -> Result<crud::Project, String> {
+    let project = crud::read_project(&db_conn, id).unwrap();
+    Ok(project)
+}
