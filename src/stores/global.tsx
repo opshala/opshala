@@ -35,7 +35,7 @@ const makeStore = () => {
 };
 
 type TStoreAndFunctions = ReturnType<typeof makeStore>;
-const globalStore = makeStore();
+export const globalStore = makeStore();
 
 const GlobalContext = createContext<TStoreAndFunctions>(globalStore);
 

@@ -1,4 +1,4 @@
-export type TScreens =
+type TScreens =
   | "projects"
   | "create-project"
   | "manage-project"
@@ -8,7 +8,7 @@ export type TScreens =
   | "profile"
   | "settings";
 
-export interface ISoftware {
+interface ISoftware {
   id: number;
   name: string;
   description: string;
@@ -20,11 +20,20 @@ export interface ISoftware {
   tags: string[];
 }
 
-export interface IProject {
+interface IProjectConfig {
+  name: string;
+  version: string;
+  opshalaVersion: string;
+  software: ISoftware[];
+}
+
+interface IProject {
   id: number;
   name: string;
   label?: string;
-  repositoryURL: string;
+  repositoryUrl: string;
   localPath: string;
-  homepageURL?: string;
+  projectConfig?: IProjectConfig;
 }
+
+export type { TScreens, ISoftware, IProjectConfig, IProject };

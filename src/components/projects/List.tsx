@@ -11,7 +11,6 @@ const ListProjects: Component = () => {
   onMount(() => {
     // Invoke the Tauri API to read list of projects
     invoke("read_project_list").then((response) => {
-      console.log(response);
       setProjects(response as Array<IProject>);
     });
   });
