@@ -8,6 +8,7 @@ use crate::database::DbConnection;
 use crate::error::OpShalaError;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all(serialize = "camelCase"))]
 pub struct Project {
     id: Option<i64>,
     name: String,

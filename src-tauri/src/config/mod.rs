@@ -4,6 +4,7 @@ use std::path::PathBuf;
 use crate::error::OpShalaError;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all(serialize = "camelCase"))]
 pub struct ProjectConfig {
     name: String,
     version: String,
@@ -12,6 +13,7 @@ pub struct ProjectConfig {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all(serialize = "camelCase"))]
 pub struct Software {
     id: u32,
     name: String,
