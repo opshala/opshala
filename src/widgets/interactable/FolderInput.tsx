@@ -11,12 +11,7 @@ interface IPropTypes {
   onChange?: (newValue: string) => void;
 }
 
-const FolderInput: Component<IPropTypes> = ({
-  label,
-  value,
-  isRequired,
-  onChange,
-}) => {
+const FolderInput: Component<IPropTypes> = (props) => {
   const handleOpenRequest = async () => {
     let selectedPath = await open({
       title: "Please select a folder",
@@ -28,26 +23,22 @@ const FolderInput: Component<IPropTypes> = ({
       if (typeof selectedPath === "object") {
         selectedPath = selectedPath[0] as string;
       }
-      onChange?.(selectedPath);
+      props.onChange?.(selectedPath);
     }
   };
 
   return (
     <>
-      {!!label && (
+      {!!props.label && (
         <label class="block text-sm font-medium leading-6 text-gray-100">
-          {label}
+          {props.label}
         </label>
       )}
-      <div class="mt-2">
-        <input
-          type="text"
-          required={isRequired}
-          class="inline-block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          value={value || ""}
-        />
-
+      <div class="mt-2 flex">
         <Button label="Select a Folder" onClick={handleOpenRequest} />
+        <span class="ml-6 text-gray-400 flex-grow py-1.5 text-sm">
+          {props.value || "None selected"}
+        </span>
       </div>
     </>
   );

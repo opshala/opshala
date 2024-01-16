@@ -1,7 +1,7 @@
 import { Component, createSignal } from "solid-js";
 
 import NavigationButtom from "./NavigationButton";
-import DropdownItem from "./DropdownItem";
+import DropdownItem from "../DropdownItem";
 
 const NavigationBar: Component = () => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] =

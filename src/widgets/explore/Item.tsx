@@ -1,13 +1,13 @@
 import { Component, For } from "solid-js";
 
-import { ISoftwareItem } from "../../utils/types";
+import { ISoftware, TScreens } from "../../utils/types";
 import Paragraph from "../typography/Paragraph";
 import Heading from "../typography/Heading";
 import ExternalAnchor from "../interactable/ExternalAnchor";
 import Button from "../interactable/Button";
 import { useGlobal } from "../../stores/global";
 
-interface IPropTypes extends ISoftwareItem {}
+interface IPropTypes extends ISoftware {}
 
 const SoftwareItem: Component<IPropTypes> = ({
   id,
@@ -24,7 +24,7 @@ const SoftwareItem: Component<IPropTypes> = ({
 
   const handleDeploy = () => {
     setSelectedSoftwareId(id);
-    setCurrentScreen("manage-project");
+    setCurrentScreen("create-project" as TScreens);
   };
 
   return (

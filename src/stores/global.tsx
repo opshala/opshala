@@ -26,12 +26,16 @@ const makeStore = () => {
       setSelectedSoftwareId: (id: number) => {
         setStore("selectedSoftwareId", id);
       },
+
+      setCurrentProjectId: (id: number) => {
+        setStore("currentProjectId", id);
+      },
     },
   ] as const; // `as const` forces tuple type inference
 };
 
 type TStoreAndFunctions = ReturnType<typeof makeStore>;
-const globalStore = makeStore();
+export const globalStore = makeStore();
 
 const GlobalContext = createContext<TStoreAndFunctions>(globalStore);
 
