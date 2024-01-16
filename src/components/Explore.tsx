@@ -7,7 +7,7 @@ import SoftwareItem from "../widgets/explore/Item";
 
 const Explore: Component = () => {
   return (
-    <div class="w-full h-full p-8 bg-gray-900">
+    <div class="h-full w-full bg-gray-900 p-8">
       <Heading size="4xl">Explore</Heading>
 
       <Paragraph size="lg">
