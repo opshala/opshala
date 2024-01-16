@@ -26,12 +26,8 @@ const NavigationBar: Component = () => {
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                <NavigationButtom label="Projects" path="projects" />
-                <NavigationButtom label="Explore" path="explore" />
-                <NavigationButtom
-                  label="Infrastructure"
-                  path="infrastructure"
-                />
+                <NavigationButtom label="Apps" path="home" />
+                <NavigationButtom label="Settings" path="settings" />
               </div>
             </div>
           </div>
@@ -89,8 +85,8 @@ const NavigationBar: Component = () => {
                 >
                   {/* <!-- Active: "bg-gray-100", Not Active: "" --> */}
                   <DropdownItem label="Your Profile" />
-                  <DropdownItem label="Team" />
-                  <DropdownItem label="Settings" />
+                  {/* <DropdownItem label="Team" /> */}
+                  {/* <DropdownItem label="Settings" /> */}
                 </div>
               )}
             </div>

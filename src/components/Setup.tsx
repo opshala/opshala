@@ -1,15 +1,15 @@
 import { Component, createSignal } from "solid-js";
 import { invoke } from "@tauri-apps/api";
 
-import { useGlobal } from "../../stores/global";
-import Heading from "../../widgets/typography/Heading";
-import Paragraph from "../../widgets/typography/Paragraph";
-import softwareItems from "../../temp/softwareItems";
-import TextInput from "../../widgets/interactable/TextInput";
-import FolderInput from "../../widgets/interactable/FolderInput";
-import YouTube from "../../widgets/YouTube";
-import ExternalAnchor from "../../widgets/interactable/ExternalAnchor";
-import Button from "../../widgets/interactable/Button";
+import { useGlobal } from "../stores/global";
+import Heading from "../widgets/typography/Heading";
+import Paragraph from "../widgets/typography/Paragraph";
+import softwareItems from "../temp/softwareItems";
+import TextInput from "../widgets/interactable/TextInput";
+import FolderInput from "../widgets/interactable/FolderInput";
+import YouTube from "../widgets/YouTube";
+import ExternalAnchor from "../widgets/interactable/ExternalAnchor";
+import Button from "../widgets/interactable/Button";
 
 interface IFormData {
   githubRepoUrl: string;
@@ -17,7 +17,7 @@ interface IFormData {
   parentFolderPath: string;
 }
 
-const CreateProject: Component = () => {
+const Setup: Component = () => {
   const [store] = useGlobal();
   const [formData, setFormData] = createSignal<IFormData>({
     githubRepoUrl: "",
@@ -52,7 +52,7 @@ const CreateProject: Component = () => {
   if (!store.currentProjectId && !selectedSoftware)
     return (
       <div class="h-full bg-gray-900">
-        <div class="h-full max-w-screen-sm mx-auto p-8 ">
+        <div class="mx-auto h-full max-w-screen-sm p-8 ">
           <Heading size="4xl">Create a Project</Heading>
 
           <Paragraph size="base">
@@ -65,8 +65,8 @@ const CreateProject: Component = () => {
 
   return (
     <div class="h-full bg-gray-900">
-      <div class="h-full max-w-screen-sm mx-auto p-8 ">
-        <Heading size="4xl">Create a Project</Heading>
+      <div class="mx-auto h-full max-w-screen-sm p-8 ">
+        <Heading size="4xl">General Setup</Heading>
 
         <Paragraph size="lg">
           {`You are creating a new project with ${selectedSoftware.name}`}
@@ -95,7 +95,7 @@ const CreateProject: Component = () => {
           deploy your project. In the link below, select the new repository and
           the following scopes, under Repository permissions:
         </Paragraph>
-        <ol class="text-white ml-8 list-decimal text-sm">
+        <ol class="ml-8 list-decimal text-sm text-white">
           <li>Actions: Read and write</li>
           <li>Administration: Read and write</li>
           <li>Environments: Read and write</li>
@@ -130,4 +130,4 @@ const CreateProject: Component = () => {
   );
 };
 
-export default CreateProject;
+export default Setup;

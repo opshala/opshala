@@ -1,12 +1,10 @@
 type TScreens =
-  | "projects"
-  | "create-project"
-  | "manage-project"
-  | "explore"
-  | "infrastructure"
-  | "team"
-  | "profile"
-  | "settings";
+  | "home"
+  | "setup"
+  | "add-app"
+  | "manage-app"
+  | "integrations"
+  | "profile";
 
 interface ISoftware {
   id: number;

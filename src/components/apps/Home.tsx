@@ -5,7 +5,7 @@ import General from "./manage/General";
 import { useProjects } from "../../stores/projects";
 import Heading from "../../widgets/typography/Heading";
 
-const ManageProject: Component = () => {
+const Home: Component = () => {
   const [_, { readCurrentProject }] = useProjects();
 
   onMount(() => {
@@ -13,26 +13,28 @@ const ManageProject: Component = () => {
   });
 
   return (
-    <div class="w-full h-full p-8 bg-gray-900">
-      <Heading size="4xl">Manage Project</Heading>
+    <div class="h-full w-full bg-gray-900 p-8">
+      <Heading size="4xl">Apps</Heading>
 
-      <div class="w-full flex flex-row">
-        <div class="w-80 bg-gray-900 pt-8 px-8">
-          <SidebarItem label="General" />
-
+      <div class="flex w-full flex-row">
+        <div class="w-80 bg-gray-900 px-8 pt-8">
           <SidebarItem label="Software" />
-          <SidebarItem label="Deployments" />
 
-          <div class="border-b border-gray-700 my-4" />
-          <div class="text-gray-500 uppercase text-xs font-bold ml-3 mb-4">
+          <div class="mb-4 ml-3 text-xs font-bold uppercase text-gray-500">
+            Deployments
+          </div>
+          <SidebarItem label="Status" />
+
+          <div class="my-4 border-b border-gray-700" />
+          <div class="mb-4 ml-3 text-xs font-bold uppercase text-gray-500">
             Infrastructure
           </div>
           <SidebarItem label="Hosting" />
           <SidebarItem label="Domains" />
         </div>
 
-        <div class="flex-grow max-w-screen-sm">
-          <div class="w-full h-full p-8 bg-gray-900">
+        <div class="max-w-screen-sm flex-grow">
+          <div class="h-full w-full bg-gray-900 p-8">
             <General />
           </div>
         </div>
@@ -41,4 +43,4 @@ const ManageProject: Component = () => {
   );
 };
 
-export default ManageProject;
+export default Home;
