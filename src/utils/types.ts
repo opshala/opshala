@@ -1,12 +1,4 @@
-type TScreens =
-  | "home"
-  | "setup"
-  | "add-app"
-  | "manage-app"
-  | "integrations"
-  | "profile";
-
-interface ISoftware {
+interface IApp {
   id: number;
   name: string;
   description: string;
@@ -18,11 +10,15 @@ interface ISoftware {
   tags: string[];
 }
 
+interface IMyApp {
+  sourceApp: IApp;
+}
+
 interface IProjectConfig {
   name: string;
   version: string;
   opshalaVersion: string;
-  software: ISoftware[];
+  apps: IMyApp[];
 }
 
 interface IProject {
@@ -34,4 +30,4 @@ interface IProject {
   projectConfig?: IProjectConfig;
 }
 
-export type { TScreens, ISoftware, IProjectConfig, IProject };
+export type { IApp, IMyApp, IProjectConfig, IProject };

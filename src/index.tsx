@@ -10,7 +10,10 @@ import Setup from "./components/settings/Setup";
 render(
   () => (
     <Router root={App}>
-      <Route path="/" component={Home} />
+      <Route path="/apps" component={Home}>
+        <Route path="/" />
+        <Route path="/:id" />
+      </Route>
       <Route path="/settings/general" component={Setup} />
     </Router>
   ),

@@ -16,11 +16,11 @@ const ListProjects: Component = () => {
   });
 
   return (
-    <div class="w-full h-full p-8 bg-gray-900">
-      <Heading size="4xl">Projects</Heading>
+    <div class="h-full w-full bg-gray-900 p-8">
+      <Heading size="4xl">Apps</Heading>
 
       <Paragraph size="lg">
-        Software that you deploy and manage using OpShala
+        Apps that you deploy and manage using OpShala
       </Paragraph>
 
       {!projects() && (

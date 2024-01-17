@@ -9,7 +9,7 @@ pub struct ProjectConfig {
     name: String,
     version: String,
     opshala_version: String,
-    software: Vec<Software>,
+    apps: Vec<Software>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]

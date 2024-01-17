@@ -3,52 +3,37 @@ import { invoke } from "@tauri-apps/api";
 import { createStore } from "solid-js/store";
 
 import { IProject } from "../utils/types";
-import { globalStore } from "./global";
+
+const PROJECT_ID = 1;
 
 interface IProjectStore extends IProject {
   isFetching: boolean;
 }
 
-type IStore = { [key: number]: IProjectStore };
+interface IStore {
+  projects: { [key: number]: IProjectStore };
+}
 
 const makeStore = () => {
-  const [store, setStore] = createStore<IStore>({});
+  const [store, setStore] = createStore<IStore>({
+    projects: {},
+  });
 
   return [
     store,
     {
-      readProject: (projectId: number) => {
+      readCurrentProject: () => {
         // We invoke the Tauri API to read the project details
-        invoke("read_project", { id: projectId }).then((response) => {
-          setStore(projectId, {
+        invoke("read_project").then((response) => {
+          setStore("projects", PROJECT_ID, {
             ...(response as IProject),
             isFetching: false,
           });
         });
       },
 
-      readCurrentProject: () => {
-        // We read currentProjectId from global store
-        const [global] = globalStore;
-        if (!!global.currentProjectId) {
-          // We invoke the Tauri API to read the project details
-          invoke("read_project", { id: global.currentProjectId }).then(
-            (response) => {
-              setStore(global.currentProjectId!, {
-                ...(response as IProject),
-                isFetching: false,
-              });
-            }
-          );
-        }
-      },
-
       getCurrentProject: () => {
-        // We read currentProjectId from global store
-        const [global] = globalStore;
-        return !!global.currentProjectId
-          ? store[global.currentProjectId]
-          : null;
+        return store["projects"][PROJECT_ID];
       },
     },
   ] as const; // `as const` forces tuple type inference

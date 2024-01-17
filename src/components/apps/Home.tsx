@@ -1,7 +1,6 @@
 import { Component, onMount } from "solid-js";
 
 import SidebarItem from "../../widgets/navigation/SidebarItem";
-import General from "./manage/General";
 import { useProjects } from "../../stores/projects";
 import Heading from "../../widgets/typography/Heading";
 
@@ -34,9 +33,7 @@ const Home: Component = () => {
         </div>
 
         <div class="max-w-screen-sm flex-grow">
-          <div class="h-full w-full bg-gray-900 p-8">
-            <General />
-          </div>
+          <div class="h-full w-full bg-gray-900 p-8"></div>
         </div>
       </div>
     </div>
