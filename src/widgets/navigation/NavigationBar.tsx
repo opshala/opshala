@@ -26,8 +26,8 @@ const NavigationBar: Component = () => {
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                <NavigationButtom label="Apps" path="home" />
-                <NavigationButtom label="Settings" path="settings" />
+                <NavigationButtom label="Apps" path="/" />
+                <NavigationButtom label="Settings" path="/settings/general" />
               </div>
             </div>
           </div>

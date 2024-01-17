@@ -13,7 +13,7 @@ interface IStore {
 
 const makeStore = () => {
   const [store, setStore] = createStore<IStore>({
-    currentScreen: "explore",
+    currentScreen: "home",
   });
 
   return [

@@ -1,15 +1,12 @@
 import { Component, createSignal } from "solid-js";
 import { invoke } from "@tauri-apps/api";
 
-import { useGlobal } from "../stores/global";
-import Heading from "../widgets/typography/Heading";
-import Paragraph from "../widgets/typography/Paragraph";
-import softwareItems from "../temp/softwareItems";
-import TextInput from "../widgets/interactable/TextInput";
-import FolderInput from "../widgets/interactable/FolderInput";
-import YouTube from "../widgets/YouTube";
-import ExternalAnchor from "../widgets/interactable/ExternalAnchor";
-import Button from "../widgets/interactable/Button";
+import Heading from "../../widgets/typography/Heading";
+import Paragraph from "../../widgets/typography/Paragraph";
+import TextInput from "../../widgets/interactable/TextInput";
+import FolderInput from "../../widgets/interactable/FolderInput";
+import ExternalAnchor from "../../widgets/interactable/ExternalAnchor";
+import Button from "../../widgets/interactable/Button";
 
 interface IFormData {
   githubRepoUrl: string;
@@ -18,7 +15,6 @@ interface IFormData {
 }
 
 const Setup: Component = () => {
-  const [store] = useGlobal();
   const [formData, setFormData] = createSignal<IFormData>({
     githubRepoUrl: "",
     githubToken: "",
@@ -45,35 +41,13 @@ const Setup: Component = () => {
     });
   };
 
-  const selectedSoftware = softwareItems.find(
-    (x) => x.id === store.selectedSoftwareId
-  );
-
-  if (!store.currentProjectId && !selectedSoftware)
-    return (
-      <div class="h-full bg-gray-900">
-        <div class="mx-auto h-full max-w-screen-sm p-8 ">
-          <Heading size="4xl">Create a Project</Heading>
-
-          <Paragraph size="base">
-            You have not select a software to deploy, please start at the
-            Explore page.
-          </Paragraph>
-        </div>
-      </div>
-    );
-
   return (
     <div class="h-full bg-gray-900">
       <div class="mx-auto h-full max-w-screen-sm p-8 ">
-        <Heading size="4xl">General Setup</Heading>
-
-        <Paragraph size="lg">
-          {`You are creating a new project with ${selectedSoftware.name}`}
-        </Paragraph>
+        <Heading size="4xl">Setup a Project</Heading>
 
         <div class="mt-6" />
-        <Heading size="lg">Project repository on GitHub</Heading>
+        <Heading size="lg">Repository on GitHub</Heading>
         <Paragraph size="sm">
           OpShala uses GitHub to store your project and run all the automation
           needed to deploy your project to your cloud provider.
@@ -121,8 +95,6 @@ const Setup: Component = () => {
           onChange={handleFieldChange("parentFolderPath")}
           value={formData().parentFolderPath}
         />
-
-        <YouTube videoId="URmeTqglS58" />
 
         <Button size="lg" label="Lets go!" onClick={handleSubmit} isBlock />
       </div>
