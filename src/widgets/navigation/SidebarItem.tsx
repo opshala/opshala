@@ -6,7 +6,7 @@ interface IPropTypes {
 
 const SidebarItem: Component<IPropTypes> = (props) => {
   return (
-    <div class="block font-semibold text-white cursor-pointer hover:bg-gray-800 py-1 px-3 rounded-md">
+    <div class="block cursor-pointer rounded-md px-6 py-1 font-semibold text-white hover:bg-gray-800">
       {props.label}
     </div>
   );

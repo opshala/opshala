@@ -6,7 +6,7 @@ import Heading from "../../widgets/typography/Heading";
 import Paragraph from "../../widgets/typography/Paragraph";
 import ProjectItem from "../../widgets/projects/Item";
 
-const ListProjects: Component = () => {
+const AppsList: Component = () => {
   const [projects, setProjects] = createSignal<Array<IProject>>([]);
   onMount(() => {
     // Invoke the Tauri API to read list of projects
@@ -16,8 +16,8 @@ const ListProjects: Component = () => {
   });
 
   return (
-    <div class="h-full w-full bg-gray-900 p-8">
-      <Heading size="4xl">Apps</Heading>
+    <>
+      <Heading size="2xl">Installed apps</Heading>
 
       <Paragraph size="lg">
         Apps that you deploy and manage using OpShala
@@ -31,8 +31,8 @@ const ListProjects: Component = () => {
       )}
 
       <For each={projects()}>{(item) => <ProjectItem {...item} />}</For>
-    </div>
+    </>
   );
 };
 
-export default ListProjects;
+export default AppsList;
