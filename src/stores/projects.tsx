@@ -33,7 +33,9 @@ const makeStore = () => {
       },
 
       getCurrentProject: () => {
-        return store["projects"][PROJECT_ID];
+        return PROJECT_ID in store.projects
+          ? store.projects[PROJECT_ID]
+          : undefined;
       },
     },
   ] as const; // `as const` forces tuple type inference

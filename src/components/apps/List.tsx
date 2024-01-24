@@ -1,18 +1,18 @@
-import { invoke } from "@tauri-apps/api";
-import { Component, For, createSignal, onMount } from "solid-js";
+import { Component, For, createMemo, onMount } from "solid-js";
 
-import { IProject } from "../../utils/types";
+import { useProjects } from "../../stores/projects";
 import Heading from "../../widgets/typography/Heading";
 import Paragraph from "../../widgets/typography/Paragraph";
-import ProjectItem from "../../widgets/projects/Item";
+import AppItem from "../../widgets/apps/Item";
 
 const AppsList: Component = () => {
-  const [projects, setProjects] = createSignal<Array<IProject>>([]);
+  const [_, { readCurrentProject, getCurrentProject }] = useProjects();
   onMount(() => {
-    // Invoke the Tauri API to read list of projects
-    invoke("read_project_list").then((response) => {
-      setProjects(response as Array<IProject>);
-    });
+    readCurrentProject();
+  });
+
+  const apps = createMemo(() => {
+    return getCurrentProject()?.projectConfig?.apps;
   });
 
   return (
@@ -23,14 +23,14 @@ const AppsList: Component = () => {
         Apps that you deploy and manage using OpShala
       </Paragraph>
 
-      {!projects() && (
+      {!apps() && (
         <Paragraph size="base">
           You have not deployed any software using OpShala, please start at the
           Explore page.
         </Paragraph>
       )}
 
-      <For each={projects()}>{(item) => <ProjectItem {...item} />}</For>
+      <For each={apps()}>{(item) => <AppItem {...item} />}</For>
     </>
   );
 };

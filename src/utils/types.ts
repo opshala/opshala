@@ -1,24 +1,29 @@
-interface IApp {
+interface ISourceApp {
   id: number;
   name: string;
   description: string;
   logo: string;
-  banner?: string;
   homepageURL?: string;
   repositoryURL?: string;
   githubStars?: number;
   tags: string[];
 }
 
-interface IMyApp {
-  sourceApp: IApp;
+interface IApp {
+  id: number;
+  name: string;
+  requestedVersion: string;
+  deployedVersion?: string;
+  relativePath?: string;
+  dependsOn?: Array<string>;
+  domain?: string;
 }
 
 interface IProjectConfig {
   name: string;
   version: string;
   opshalaVersion: string;
-  apps: IMyApp[];
+  apps: IApp[];
 }
 
 interface IProject {
@@ -30,4 +35,4 @@ interface IProject {
   projectConfig?: IProjectConfig;
 }
 
-export type { IApp, IMyApp, IProjectConfig, IProject };
+export type { IApp, IApp as IMyApp, IProjectConfig, IProject };

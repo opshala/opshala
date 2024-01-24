@@ -9,12 +9,12 @@ pub struct ProjectConfig {
     name: String,
     version: String,
     opshala_version: String,
-    apps: Vec<Software>,
+    apps: Vec<App>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all(serialize = "camelCase"))]
-pub struct Software {
+pub struct App {
     id: u32,
     name: String,
     requested_version: String,
@@ -27,7 +27,6 @@ pub struct Software {
 pub fn load_config(project_path: PathBuf) -> Result<ProjectConfig, OpShalaError> {
     let mut file_path = project_path.clone();
     file_path.push("OpShala.ron");
-    println!("Config file path - {:?}", file_path);
 
     // Read a file as str
     let config = std::fs::read_to_string(file_path)
