@@ -2,6 +2,7 @@ import { Component, createSignal } from "solid-js";
 
 import NavigationButtom from "./NavigationButton";
 import DropdownItem from "../DropdownItem";
+import { A } from "@solidjs/router";
 
 const NavigationBar: Component = () => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] =
@@ -17,21 +18,19 @@ const NavigationBar: Component = () => {
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex flex-shrink-0 items-center">
-              <img
-                class="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-              />
+              <A href="/">
+                <img
+                  class="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  alt="Your Company"
+                />
+              </A>
             </div>
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                <NavigationButtom label="Projects" path="projects" />
-                <NavigationButtom label="Explore" path="explore" />
-                <NavigationButtom
-                  label="Infrastructure"
-                  path="infrastructure"
-                />
+                <NavigationButtom label="Apps" path="/apps" />
+                <NavigationButtom label="Settings" path="/settings" />
               </div>
             </div>
           </div>
@@ -89,8 +88,8 @@ const NavigationBar: Component = () => {
                 >
                   {/* <!-- Active: "bg-gray-100", Not Active: "" --> */}
                   <DropdownItem label="Your Profile" />
-                  <DropdownItem label="Team" />
-                  <DropdownItem label="Settings" />
+                  {/* <DropdownItem label="Team" /> */}
+                  {/* <DropdownItem label="Settings" /> */}
                 </div>
               )}
             </div>

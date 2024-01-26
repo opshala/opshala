@@ -4,7 +4,7 @@ import Heading from "../../../widgets/typography/Heading";
 import Paragraph from "../../../widgets/typography/Paragraph";
 import ExternalAnchor from "../../../widgets/interactable/ExternalAnchor";
 import TextInput from "../../../widgets/interactable/TextInput";
-import { useProjects } from "../../../stores/projects";
+import { useProjects } from "../../../stores/project";
 
 interface IFormData {
   githubRepoUrl: string;
@@ -13,10 +13,9 @@ interface IFormData {
 }
 
 const General: Component = () => {
-  const [_, { getCurrentProject }] = useProjects();
-  const project = createMemo(() => getCurrentProject());
+  const [projectStore] = useProjects();
   const [formData, setFormData] = createSignal<IFormData>({
-    githubRepoUrl: project()?.repositoryUrl || "",
+    githubRepoUrl: projectStore.project?.repositoryUrl || "",
     githubToken: "Not shown",
     parentFolderPath: "",
   });
@@ -32,13 +31,13 @@ const General: Component = () => {
     return inner;
   };
 
-  if (!project) {
+  if (!projectStore.project) {
     return <>Loading</>;
   }
 
   return (
     <>
-      <Heading size="2xl">{project()?.name}</Heading>
+      <Heading size="2xl">{projectStore.project?.name}</Heading>
 
       <div class="mt-6" />
       <Heading size="lg">Project repository on GitHub</Heading>
@@ -51,7 +50,7 @@ const General: Component = () => {
       </ExternalAnchor>
       <TextInput
         label="URL to your GitHub repository"
-        value={project()?.repositoryUrl}
+        value={projectStore.project?.repositoryUrl}
         onChange={handleFieldChange("githubRepoUrl")}
       />
 
@@ -63,7 +62,7 @@ const General: Component = () => {
         deploy your project. In the link below, select the new repository and
         the following scopes, under Repository permissions:
       </Paragraph>
-      <ol class="text-white ml-8 list-decimal text-sm">
+      <ol class="ml-8 list-decimal text-sm text-white">
         <li>Actions: Read and write</li>
         <li>Administration: Read and write</li>
         <li>Environments: Read and write</li>

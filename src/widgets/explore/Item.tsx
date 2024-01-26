@@ -1,31 +1,24 @@
 import { Component, For } from "solid-js";
 
-import { ISoftware, TScreens } from "../../utils/types";
+import { IApp } from "../../utils/types";
 import Paragraph from "../typography/Paragraph";
 import Heading from "../typography/Heading";
 import ExternalAnchor from "../interactable/ExternalAnchor";
 import Button from "../interactable/Button";
-import { useGlobal } from "../../stores/global";
 
-interface IPropTypes extends ISoftware {}
+interface IPropTypes extends IApp {}
 
 const SoftwareItem: Component<IPropTypes> = ({
   id,
   name,
   description,
   logo,
-  banner,
   homepageURL,
   repositoryURL,
   githubStars,
   tags,
 }) => {
-  const [_, { setCurrentScreen, setSelectedSoftwareId }] = useGlobal();
-
-  const handleDeploy = () => {
-    setSelectedSoftwareId(id);
-    setCurrentScreen("create-project" as TScreens);
-  };
+  const handleDeploy = () => {};
 
   return (
     <div class="my-4 rounded-lg bg-gray-800 p-4 shadow-md">

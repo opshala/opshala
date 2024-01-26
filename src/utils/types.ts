@@ -1,30 +1,29 @@
-type TScreens =
-  | "projects"
-  | "create-project"
-  | "manage-project"
-  | "explore"
-  | "infrastructure"
-  | "team"
-  | "profile"
-  | "settings";
-
-interface ISoftware {
+interface ISourceApp {
   id: number;
   name: string;
   description: string;
   logo: string;
-  banner?: string;
   homepageURL?: string;
   repositoryURL?: string;
   githubStars?: number;
   tags: string[];
 }
 
+interface IApp {
+  id: number;
+  name: string;
+  requestedVersion: string;
+  deployedVersion?: string;
+  relativePath?: string;
+  dependsOn?: Array<number>;
+  domainId?: number;
+}
+
 interface IProjectConfig {
   name: string;
   version: string;
   opshalaVersion: string;
-  software: ISoftware[];
+  apps: IApp[];
 }
 
 interface IProject {
@@ -36,4 +35,16 @@ interface IProject {
   projectConfig?: IProjectConfig;
 }
 
-export type { TScreens, ISoftware, IProjectConfig, IProject };
+interface IDomain {
+  id: number;
+  domain: string;
+}
+
+interface IAppURL {
+  id: number;
+  domainId: number;
+  appId: number;
+  path: string;
+}
+
+export type { ISourceApp, IApp, IProjectConfig, IProject, IDomain, IAppURL };
