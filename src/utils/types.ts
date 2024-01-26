@@ -15,8 +15,8 @@ interface IApp {
   requestedVersion: string;
   deployedVersion?: string;
   relativePath?: string;
-  dependsOn?: Array<string>;
-  domain?: string;
+  dependsOn?: Array<number>;
+  domainId?: number;
 }
 
 interface IProjectConfig {
@@ -35,4 +35,16 @@ interface IProject {
   projectConfig?: IProjectConfig;
 }
 
-export type { IApp, IApp as IMyApp, IProjectConfig, IProject };
+interface IDomain {
+  id: number;
+  domain: string;
+}
+
+interface IAppURL {
+  id: number;
+  domainId: number;
+  appId: number;
+  path: string;
+}
+
+export type { ISourceApp, IApp, IProjectConfig, IProject, IDomain, IAppURL };

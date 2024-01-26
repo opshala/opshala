@@ -1,7 +1,7 @@
 import { Component } from "solid-js";
 
 import { UserProvider } from "./stores/user";
-import { ProjectsProvider } from "./stores/projects";
+import { ProjectsProvider } from "./stores/project";
 import NavigationBar from "./widgets/navigation/NavigationBar";
 import { RouteSectionProps } from "@solidjs/router";
 

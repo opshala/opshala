@@ -1,7 +1,7 @@
 import { Component, onMount } from "solid-js";
 import { RouteSectionProps } from "@solidjs/router";
 
-import { useProjects } from "../../stores/projects";
+import { useProjects } from "../../stores/project";
 import SidebarItem from "../../widgets/navigation/SidebarItem";
 import SidebarHeading from "../../widgets/navigation/SidebarHeading";
 

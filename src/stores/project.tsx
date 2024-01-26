@@ -4,19 +4,14 @@ import { createStore } from "solid-js/store";
 
 import { IProject } from "../utils/types";
 
-const PROJECT_ID = 1;
-
-interface IProjectStore extends IProject {
-  isFetching: boolean;
-}
-
 interface IStore {
-  projects: { [key: number]: IProjectStore };
+  project?: IProject;
+  isFetching: boolean;
 }
 
 const makeStore = () => {
   const [store, setStore] = createStore<IStore>({
-    projects: {},
+    isFetching: false,
   });
 
   return [
@@ -25,17 +20,11 @@ const makeStore = () => {
       readCurrentProject: () => {
         // We invoke the Tauri API to read the project details
         invoke("read_project").then((response) => {
-          setStore("projects", PROJECT_ID, {
-            ...(response as IProject),
+          setStore({
+            project: response as IProject,
             isFetching: false,
           });
         });
-      },
-
-      getCurrentProject: () => {
-        return PROJECT_ID in store.projects
-          ? store.projects[PROJECT_ID]
-          : undefined;
       },
     },
   ] as const; // `as const` forces tuple type inference

@@ -1,6 +1,7 @@
-import { Component, createSignal } from "solid-js";
+import { Component, createMemo, createSignal, onMount } from "solid-js";
 import { invoke } from "@tauri-apps/api";
 
+import { useProjects } from "../../stores/project";
 import Heading from "../../widgets/typography/Heading";
 import Paragraph from "../../widgets/typography/Paragraph";
 import TextInput from "../../widgets/interactable/TextInput";
@@ -15,10 +16,22 @@ interface IFormData {
 }
 
 const Setup: Component = () => {
+  const [projectStore] = useProjects();
   const [formData, setFormData] = createSignal<IFormData>({
     githubRepoUrl: "",
     githubToken: "",
     parentFolderPath: "",
+  });
+
+  onMount(() => {
+    const project = projectStore.project;
+    if (!!project) {
+      setFormData({
+        githubRepoUrl: project.repositoryUrl,
+        githubToken: "Not shown",
+        parentFolderPath: project.localPath,
+      });
+    }
   });
 
   const handleFieldChange = (fieldName: string) => {
@@ -79,6 +92,7 @@ const Setup: Component = () => {
       </ExternalAnchor>
       <TextInput
         label="Paste your Personal Access Token"
+        value={formData().githubToken}
         onChange={handleFieldChange("githubToken")}
       />
 
