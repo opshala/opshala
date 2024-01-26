@@ -4,8 +4,10 @@
 use database::setup::get_database;
 use tauri::Manager;
 
+mod apps;
 mod config;
 mod database;
+mod domains;
 mod error;
 mod github;
 mod projects;

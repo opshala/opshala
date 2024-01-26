@@ -1,22 +1,7 @@
-use serde_derive::{Deserialize, Serialize};
+use super::{helpers::get_repository_owner_and_name, Project};
+use crate::{config::load_config, database::DbConnection, error::OpShalaError};
 use std::path::PathBuf;
 use url::Url;
-
-use super::helpers::get_repository_owner_and_name;
-use crate::config::{load_config, ProjectConfig};
-use crate::database::DbConnection;
-use crate::error::OpShalaError;
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all(serialize = "camelCase"))]
-pub struct Project {
-    id: Option<i64>,
-    name: String,
-    label: String,
-    repository_url: String,
-    local_path: String,
-    project_config: Option<ProjectConfig>,
-}
 
 impl Project {
     pub fn new(repository_url: &str, local_path: &str) -> Result<Self, String> {
@@ -49,7 +34,6 @@ impl Project {
         };
         if let Some(true) = load_config {
             project.load_config();
-            print!("{:?}", project.project_config);
         };
         Ok(project)
     }
